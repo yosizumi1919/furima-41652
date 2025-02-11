@@ -4,12 +4,13 @@
 
 | Column                   | Type     | Options                   |
 | ------------------------ | -------- | ------------------------- |
-| first_name               | string   | null: false               |
-| last_name                | string   | null: false               |
+| kanji_first_name         | string   | null: false               |
+| kanji_last_name          | string   | null: false               |
+| kana_first_name          | string   | null: false               |
+| kana_last_name           | string   | null: false               |
 | email                    | string   | null: false, unique: true |
-| password                 | string   | null: false               |
-| confirmed_password       | string   | null: false               |
-| birth_date               | datetime | null: false               |
+| encrypted_password       | string   | null: false               |
+| birth_date               | date     | null: false               |
 
 ### Association
 
@@ -23,27 +24,25 @@
 | ----------------------- | ---------- | ------------------------------ |
 | item_name               | string     | null: false                    |
 | explanation             | text       | null: false                    |
-| category                | string     | null: false                    |
-| status                  | string     | null: false                    |
-| burden                  | string     | null: false                    |
-| region                  | string     | null: false                    |
-| days                    | string     | null: false                    |
+| category_id             | integer    | null: false                    |
+| status_id               | integer    | null: false                    |
+| burden_id               | integer    | null: false                    |
+| region_id               | integer    | null: false                    |
+| day_id                  | integer    | null: false                    |
 | price                   | integer    | null: false                    |
 | user                    | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :orders
+- has_one    :order
 
 
 ## orders テーブル
 
 | Column                  | Type       | Options                        |
 | ----------------------- | ---------- | ------------------------------ |
-| card_number             | integer    | null: false                    |
-| card_expiration         | datetime   | null: false                    |
-| card_code               | integer    | null: false                    |
+| item                    | references | null: false, foreign_key: true |
 | user                    | references | null: false, foreign_key: true |
 
 ### Association
@@ -56,12 +55,12 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| address_number   | integer    | null: false                    |
-| prefectures      | string     | null: false                    |
-| municipalities   | string     | null: false                    |
-| street           | integer    | null: false                    |
-| building         | string     | null: false                    |
-| phone_number     | integer    | null: false, foreign_key: true |
+| address_number   | string     | null: false                    |
+| region_id        | integer    | null: false                    |
+| city             | string     | null: false                    |
+| street           | string     | null: false                    |
+| building         | string     | 
+| phone_number     | string     | null: false                    |
 
 ### Association
 
