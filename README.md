@@ -4,6 +4,7 @@
 
 | Column                   | Type     | Options                   |
 | ------------------------ | -------- | ------------------------- |
+| nickname                 | string   | null: false               |
 | kanji_first_name         | string   | null: false               |
 | kanji_last_name          | string   | null: false               |
 | kana_first_name          | string   | null: false               |
@@ -49,7 +50,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one : address
+- has_one :address
 
 ## addresses テーブル
 
@@ -61,6 +62,7 @@
 | street           | string     | null: false                    |
 | building         | string     | 
 | phone_number     | string     | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
