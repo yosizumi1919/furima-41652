@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_13_214244) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_13_220757) do
   create_table "furimas", charset: "utf8mb3", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,6 +29,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_13_214244) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
+    t.string "kanji_first_name"
+    t.string "kanji_last_name"
+    t.string "kana_first_name"
+    t.string "kana_last_name"
+    t.date "birth_date"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
