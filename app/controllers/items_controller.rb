@@ -5,9 +5,8 @@ class ItemsController < ApplicationController
 
   def new
     authenticate_user!
-    
-    @Item = Item.new
 
+    @Item = Item.new
   end
 
   def create
@@ -17,14 +16,12 @@ class ItemsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   private
-  def item_params
-    params.require(:item).permit(:item_name,:explanation,:category_id,:status_id,:burden_id,:region_id,
-    :day_id,:price,:image).merge(user_id:current_user.id)
-  end
-  
-end
 
+  def item_params
+    params.require(:item).permit(:item_name, :explanation, :category_id, :status_id, :burden_id, :region_id,
+                                 :day_id, :price, :image).merge(user_id: current_user.id)
+  end
+end
