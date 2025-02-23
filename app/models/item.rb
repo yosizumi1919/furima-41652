@@ -8,10 +8,14 @@ class Item < ApplicationRecord
   validates :burden_id, presence: true
   validates :region_id, presence: true
   validates :day_id, presence: true
-  validates :price, presence: true
-  
+  validates :price, presence: true,numericality: { greater_than_or_equal_to: 300, less_than:9999999 }
+  validates :image, presence: true
+
+
   belongs_to :user
+
   has_one_attached :image
+
 
   belongs_to :category
   belongs_to :status
@@ -24,5 +28,9 @@ class Item < ApplicationRecord
   validates :burden_id, numericality: { other_than: 1 , message: "can't be blank" }
   validates :region_id, numericality: { other_than: 1 , message: "can't be blank" }
   validates :day_id, numericality: { other_than: 1 , message: "can't be blank" }
+
+  PRICE_REGEX = /\A[0-9]+\z/
+  validates_format_of :price, with: PRICE_REGEX
+
 
 end
