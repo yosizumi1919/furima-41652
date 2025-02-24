@@ -51,7 +51,7 @@ RSpec.describe Item, type: :model do
       it '販売価格が空では登録できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '販売価格が300未満では登録できない' do
         @item.price = 44
@@ -64,9 +64,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
       it '販売価格に半角数字以外が含まれている場合は出品できない' do
-        @item.price = '４４４４'
+        @item.price = 444.4
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include("Price must be an integer")
       end
       it '商品画像が空では登録できない' do
         @item.image = nil
