@@ -1,12 +1,11 @@
 class ItemsController < ApplicationController
-before_action :user_login, only:[:create]
+  before_action :authenticate_user!, only:[:new]
 
   def index
    #  @items = Item.all
   end
 
   def new
-    authenticate_user!
 
     @Item = Item.new
   end
@@ -27,8 +26,5 @@ before_action :user_login, only:[:create]
    :day_id, :price, :image).merge(user_id: current_user.id)
   end
   
-  def user_login
-    authenticate_user!
-  end
 
 end
