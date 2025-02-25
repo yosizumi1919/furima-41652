@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品機能' do
-    context '出品ができる時' do   
+    context '出品ができる時' do
       it 'item_name、explanation、category_id、status_id、
       burden_id、region_id、day_id、price、imageが存在すれば登録できる' do
         expect(@item).to be_valid
@@ -56,17 +56,17 @@ RSpec.describe Item, type: :model do
       it '販売価格が300未満では登録できない' do
         @item.price = 44
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it '販売価格が10,000,000以上だと登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it '販売価格に半角数字以外が含まれている場合は出品できない' do
         @item.price = 444.4
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be an integer")
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
       it '商品画像が空では登録できない' do
         @item.image = nil
@@ -76,7 +76,7 @@ RSpec.describe Item, type: :model do
       it 'userが紐付いていなければ出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end

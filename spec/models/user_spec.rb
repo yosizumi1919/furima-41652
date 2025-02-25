@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー管理機能' do
-    context 'ユーザー新規登録ができるとき' do   
+    context 'ユーザー新規登録ができるとき' do
       it 'nickname、email、password、password_confirmation、
       kanji_first_name、kanji_last_name、kana_first_name、 kana_last_name、birth_dateが存在すれば登録できる' do
         expect(@user).to be_valid
@@ -57,7 +57,7 @@ RSpec.describe User, type: :model do
       end
       it 'passwordに全角文字が入っていると登録できない' do
         @user.password = '1111aaa山田'
-        @user.valid?  
+        @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
