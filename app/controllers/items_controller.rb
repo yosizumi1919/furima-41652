@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
+  before_action :set_item, only: [:show, :edit, :update]
   before_action :move_to_new, only: [:edit]
 
   def index
@@ -11,7 +12,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def create
@@ -24,13 +24,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path(@item.id)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,8 +41,12 @@ class ItemsController < ApplicationController
                                  :day_id, :price, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_new
+  def set_item
     @item = Item.find(params[:id])
+  end
+
+  def move_to_new
+    set_item
     return if current_user.id == @item.user_id
 
     redirect_to root_path
