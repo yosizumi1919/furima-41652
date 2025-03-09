@@ -10,10 +10,10 @@ class OrdersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @form = Form.new(form_params)
-    if  
+    if @form.valid?
       @form.save
       return redirect_to root_path
-    else
+    else 
       render 'index', status: :unprocessable_entity
     end
   end
