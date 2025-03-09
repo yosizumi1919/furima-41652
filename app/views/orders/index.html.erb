@@ -1,3 +1,4 @@
+<%= include_gon %>
 <%= render "shared/second-header"%>
 
 <div class='transaction-contents'>
@@ -26,7 +27,7 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        ¥<%=  @item.price %>
+        <%=  @item.price %>
       </p>
     </div>
     <%# /支払額の表示 %>
