@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :move_to_root_path, only: [:index]
+  before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index]
   before_action :order_user, only: [:index]
   before_action :sold_out, only: [:index]
@@ -39,12 +39,6 @@ class OrdersController < ApplicationController
       card: form_params[:token],
       currency: 'jpy'
     )
-  end
-
-  def move_to_root_path
-    return if user_signed_in?
-
-    redirect_to root_path
   end
 
   def set_item

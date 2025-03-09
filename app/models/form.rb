@@ -11,4 +11,20 @@ class Form
     validates :token
   end
   validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
+
+  def save
+    @order = Order.create(
+      user_id: user_id,
+      item_id: item_id
+    )
+    Address.create(
+      address_number: address_number,
+      region_id: region_id,
+      city: city,
+      street: street,
+      building: building,
+      phone_number: phone_number,
+      order_id: @order.id
+    )
+  end
 end

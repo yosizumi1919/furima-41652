@@ -28,8 +28,4 @@ class Item < ApplicationRecord
   validates :burden_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :day_id, numericality: { other_than: 1, message: "can't be blank" }
-
-  def ordered?
-    order.present?
-  end
 end
