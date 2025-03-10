@@ -7,7 +7,7 @@ class Form
     validates :address_number, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid' }
     validates :city
     validates :street
-    validates :phone_number, length: { only_integer: true, in: 10..11, message: 'is invalid' }
+    validates :phone_number, format: { with: /\A\d{10}\z|\A\d{11}\z/, message: 'is invalid' }
     validates :token
     validates :user_id
     validates :item_id

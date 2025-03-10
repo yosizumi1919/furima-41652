@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :set_item, only: [:index]
+  before_action :set_item, only: [:index, :create]
   before_action :order_user, only: [:index]
   before_action :sold_out, only: [:index]
 
@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @form = Form.new(form_params)
     if @form.valid?
       pay_item
