@@ -9,6 +9,8 @@ class Form
     validates :street
     validates :phone_number, length: { only_integer: true, in: 10..11, message: 'is invalid' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
   validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
 
