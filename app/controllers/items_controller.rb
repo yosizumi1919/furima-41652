@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit,:destroy]
-  before_action :set_item, only: [:show, :edit, :update,:destroy]
-  before_action :move_to_new, only: [:edit,:destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_new, only: [:edit, :destroy]
+  before_action :edit_sold_out, only: [:edit]
 
   def index
     @Items = Item.all.order('created_at DESC')
@@ -53,6 +54,12 @@ class ItemsController < ApplicationController
 
   def move_to_new
     return if current_user.id == @item.user_id
+
+    redirect_to root_path
+  end
+
+  def edit_sold_out
+    return unless @item.order.present?
 
     redirect_to root_path
   end
